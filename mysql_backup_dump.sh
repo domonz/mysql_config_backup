@@ -17,3 +17,6 @@ for db in $databases; do
   mysqldump --opt --routines --triggers --events --skip-lock-tables --force --user=$mysql_user --password=$mysql_passwd --databases $db | gzip > "$dest/$db-$timestamp.gz"
 done
 
+#INNODB SESSION
+innobackupex --user=$mysql_user --password=$mysql_passwd $dest/FULL/
+zip -r full-$timestamp.zip $dest/FULL/
