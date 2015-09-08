@@ -32,6 +32,7 @@ while getopts ":a" opt; do
   				mysqldump --opt --routines --triggers --events --skip-lock-tables --force --user=$mysql_user --password=$mysql_passwd --databases $db | gzip > "$dest/MYSQL_DUMP/$db-$timestamp.gz"
 			done
     ;;
+    \?)
       echo "Invalid option: -$OPTARG" >&2
       ;;
   esac
