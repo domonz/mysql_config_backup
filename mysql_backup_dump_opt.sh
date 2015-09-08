@@ -32,7 +32,6 @@ while getopts ":a:b" opt; do
   				mysqldump --opt --routines --triggers --events --skip-lock-tables --force --user=$mysql_user --password=$mysql_passwd --databases $db | gzip > "$dest/MYSQL_DUMP/$db-$timestamp.gz"
 			done
     ;;
-    
     b)
      mkdir -p $dest/MYSQL_INNOBACKUP
 	 innobackupex --stream=tar --user=$mysql_user --password=$mysql_passwd --defaults-file=/etc/mysql/my.cnf ./ | gzip -c -9 > $dest/MYSQL_INNOBACKUP/full.$timestamp.tar.gz
