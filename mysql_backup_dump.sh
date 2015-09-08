@@ -18,5 +18,6 @@ for db in $databases; do
 done
 
 #INNODB SESSION
-innobackupex --user=$mysql_user --password=$mysql_passwd $dest/FULL/
+mkdir -p $dest/FULL
+innobackupex --user=$mysql_user --password=$mysql_passwd $dest/FULL
 zip -r full-$timestamp.zip $dest/FULL/
