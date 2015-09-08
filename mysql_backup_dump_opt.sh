@@ -23,7 +23,7 @@ timestamp=$(date +"%F")
 
 
 echo "OPTIND starts at $OPTIND"
-while getopts ":di:" optname
+while getopts ":dump:" optname
   do
     case "$optname" in
       "dump")
