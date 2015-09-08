@@ -22,7 +22,7 @@ timestamp=$(date +"%F")
 #innobackupex --stream=tar --user=$mysql_user --password=$mysql_passwd --defaults-file=/etc/mysql/my.cnf ./ | gzip -c -9 > $dest/MYSQL_INNOBACKUP/full.$timestamp.tar.gz
 
 
-while getopts ":a" opt; do
+while getopts ":a:b" opt; do
   case $opt in
     a)
       mkdir -p $dest/MYSQL_DUMP
@@ -33,6 +33,11 @@ while getopts ":a" opt; do
 			done
     ;;
     \?)
+        b)
+     mkdir -p $dest/MYSQL_INNOBACKUP
+	 innobackupex --stream=tar --user=$mysql_user --password=$mysql_passwd --defaults-file=/etc/mysql/my.cnf ./ | gzip -c -9 > $dest/MYSQL_INNOBACKUP/full.$timestamp.tar.gz
+    ;;   
+     \?)
       echo "Invalid option: -$OPTARG" >&2
       ;;
   esac
