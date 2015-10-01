@@ -30,7 +30,7 @@ while getopts ":di" opt; do
         databases=`mysql --user=$mysql_user -p$mysql_passwd -e "SHOW DATABASES;"`
 
 			for db in $databases; do
-  				mysqldump --opt --routines --triggers --events --skip-lock-tables --force --host=$mysql_host --user=$mysql_user --password=$mysql_passwd --databases $db | gzip > "$dest/MYSQL_DUMP/$db-$timestamp.gz"
+  				mysqldump --opt --routines --triggers --events --skip-lock-tables --force -h $mysql_host --user=$mysql_user --password=$mysql_passwd --databases $db | gzip > "$dest/MYSQL_DUMP/$db-$timestamp.gz"
 			done
 	cd $dest/MYSQL_DUMP
 	ls -tQ | tail -n+7 | xargs rm
